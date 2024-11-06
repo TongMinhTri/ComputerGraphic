@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Racing</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h1 class="lose">You lose!</h1>
+    <div class="information-container">
+      <div class="left-information">
+        <h1><b>LEFT SHIFT</b> or <b>DOUBLE TAP</b> to Swap</h1>
+        <h1><b>P</b> to pause</h1>
+
+        <!-- Pause button -->
+        <button
+          type="button"
+          class="btn btn-primary custom-btn"
+          data-toggle="modal"
+          data-target="#pause-modal"
+          id="pause-btn"
+        >
+          <h1>Pause</h1>
+        </button>
+      </div>
+
+      <div class="right-information">
+        <h1 class="score">Score: 0</h1>
+
+        <h1 class="maxScore">Max score: 0</h1>
+
+        <h1 class="highJump">High jump: 0</h1>
+
+        <h1 class="immortal">Immortal: 0</h1>
+
+        <h1 class="coin">Coins: 0</h1>
+      </div>
+    </div>
+
+    <!-- Pause Modal -->
+    <div
+      class="modal fade"
+      id="pause-modal"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pause</h5>
+          </div>
+          <div class="modal-body custom-modal-body">
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn resume-btn"
+              data-dismiss="modal"
+            >
+              Resume
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn"
+              data-dismiss="modal"
+              id="restart-btn"
+            >
+              Restart
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn rank-btn"
+              data-toggle="modal"
+              data-target="#rank-modal"
+              data-dismiss="modal"
+            >
+              Rank
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn rank-btn skin-btn"
+              data-toggle="modal"
+              data-target="#car-modal"
+              data-dismiss="modal"
+            >
+              Skin
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn logout-btn"
+              data-toggle="modal"
+              data-target="#login-modal"
+              data-dismiss="modal"
+            >
+              Logout
+            </button>
+            <div>
+              <label for="volume-slider">Volume</label>
+              <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-slider">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dead Modal -->
+    <div
+      class="modal fade"
+      id="dead-modal"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crashed</h5>
+          </div>
+          <div class="modal-body custom-modal-body" id="dead-modal-body">
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn resume-btn"
+              data-dismiss="modal"
+            >
+              Play again
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn rank-btn"
+              data-toggle="modal"
+              data-target="#rank-modal"
+              data-dismiss="modal"
+            >
+              Rank
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn rank-btn skin-btn"
+              data-toggle="modal"
+              data-target="#car-modal"
+              data-dismiss="modal"
+            >
+              Skin
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn logout-btn"
+              data-toggle="modal"
+              data-target="#login-modal"
+              data-dismiss="modal"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rank Modal -->
+    <div
+      class="modal fade"
+      id="rank-modal"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Rank</h5>
+          </div>
+          <div class="modal-body custom-modal-body" id="rank-modal-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn"
+              data-dismiss="modal"
+              data-toggle="modal"
+              data-target="#pause-modal"
+              id="rank-okay-btn"
+            >
+              Okay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div
+      class="modal fade"
+      id="login-modal"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          </div>
+          <div class="modal-body custom-modal-body">
+            <form id="login-form" action="">
+              <div>
+                <label for="username-input">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username-input"
+                  minlength="3"
+                  autofocus
+                />
+              </div>
+              <div>
+                <button type="submit" id="login-btn">Login</button>
+              </div>
+            </form>
+            <div id="login-message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car Modal -->
+    <div
+      class="modal fade"
+      id="car-modal"
+      data-backdrop="static"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Skin</h5>
+          </div>
+          <div class="modal-body custom-modal-body" id="car-modal-body">
+            <h3>Total coins: <span id="car-total-coin"></span></h3>
+            <div class="car-container">
+              <div>
+                <div>
+                  <img
+                    class="car-image"
+                    src="/images/police-car.png"
+                    alt="police-car"
+                  />
+                  <button
+                    class="car-button btn btn-secondary custom-modal-btn yellow-button"
+                  >
+                    Chosen
+                  </button>
+                </div>
+                <div>
+                  <img
+                    class="car-image"
+                    src="/images/red-car.png"
+                    alt="red-car"
+                  />
+                  <button class="car-button btn btn-secondary custom-modal-btn">
+                    100 coins
+                  </button>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <img
+                    class="car-image"
+                    src="/images/white-car.png"
+                    alt="white-car"
+                  />
+
+                  <button class="car-button btn btn-secondary custom-modal-btn">
+                    100 coins
+                  </button>
+                </div>
+                <div>
+                  <img
+                    class="car-image"
+                    src="/images/yellow-car.png"
+                    alt="yellow-car"
+                  />
+
+                  <button class="car-button btn btn-secondary custom-modal-btn">
+                    100 coins
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary custom-modal-btn"
+              data-dismiss="modal"
+              data-toggle="modal"
+              data-target="#pause-modal"
+            >
+              Okay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="background">
+      <img src="/images/background.png" alt="background" />
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/eventListener.js"></script>
+  </body>
+</html>
